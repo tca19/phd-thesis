@@ -1,0 +1,179 @@
+\documentclass[11pt,twoside]{book}
+
+% Packages + Config (indented to be folded in vim)
+  \usepackage[utf8]{inputenc}
+  \usepackage{graphicx}  % to use imgaes, and store them in a shared folder
+  \usepackage{times}
+  \graphicspath{{images/}}
+  \usepackage{caption}   % to have caption on different parts of a figure
+  \usepackage{subcaption}
+  \usepackage{booktabs}  % better looking tables
+  \usepackage{multirow}
+  \usepackage{hyperref}  % to have clickable links when a paper is cited
+  \usepackage{bookmark}  % so conclusion is not in last part (part III)
+  \usepackage{natbib}    % to cite paper and set a nice style for bibliography
+  \usepackage{fancyhdr}  % to print the name of section in header/footer
+  \usepackage{xcolor}    % to write some words in color
+  \usepackage{amsmath}   % for multiline equations
+  \usepackage{amsfonts}  % for some symbols in \equation
+  \usepackage{amsthm}    % to write theorems and definitions
+  \usepackage{pgfplots}  % for plots build from inside the .tex file
+  \usepackage[a4paper,   % default margins of a book are large, reduce them
+              width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+
+  % I HATE TO TYPE \textcolor{red}{bla...bla} each time I want something red
+  \newcommand{\red}[1]{(\textcolor{red}{#1})}
+
+  % Keyboard shortcut for bold teal things for subscript text and normal text
+  % (used in tables of ch05 - dict2vec)
+  \newcommand{\indic}[1]{$_{\textcolor{teal}{\textbf{#1}}}$}
+  \newcommand{\teal}[1]{\textcolor{teal}{\textbf{#1}}}
+
+  % \autoref by default does not capitalize chapter/section/subsection. Make
+  % them Titlecase (first letter in uppercse)
+  \def\chapterautorefname{Chapter}
+  \def\sectionautorefname{Section}
+  \def\subsectionautorefname{Subsection}
+
+  % Configure the information displayed in header/footer of each page
+  % *** MODIFIED AGAIN IN chapter/01-...tex ***
+  \pagestyle{fancy}  % L=left, R=right, C=center, O=odd pages, E=even pages
+  \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+  \renewcommand{\sectionmark}[1]{ \markright{#1}{} }
+  \fancyhf{} % set header/footer empty (to override the default info)
+  % Even pages: pageNumberInBold chapterTitle             chapterNumber
+  % Odd pages:  sectionNumber             sectionTitle pageNumberInBold
+  \fancyhead[LE]{\textbf{\thepage}~~~\textit{\leftmark}}
+  \fancyhead[RE]{\MakeUppercase{\chaptername}~\thechapter}
+  \fancyhead[LO]{\textit{\rightmark}}
+  \fancyhead[RO]{\textbf{\thepage}}
+  \renewcommand{\headrulewidth}{0pt} % width of horizontal rule below header
+
+  % Define some custom colors, used in one example in ch05 - dict2vec
+  \definecolor{maroon}{rgb}{215,0,0}
+  \definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+  \definecolor{cerise}{rgb}{0.87, 0.19, 0.39}
+  \definecolor{jade}{rgb}{0.0, 0.66, 0.42}
+
+  % Special argmin/argmax with things underneath (used in optimization equation)
+  \DeclareMathOperator*{\argmin}{arg\,min}
+  \DeclareMathOperator*{\argmax}{arg\,max}
+
+  % To have some definitions or theorems or lemma
+  \newtheorem{theorem}{Theorem}[chapter]
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}[chapter]
+  \newtheorem{lemma}{Lemma}[chapter]
+
+  % How to cite papers:
+  %   \citet{}       Textual citation
+  %   \citep{}       Parenthetical citation
+  %   \citet*{}      Same as \citet but if there are several authors, all
+  %                  names are printed
+  %   \citep*{}      The same as \citep but if there are several authors, all
+  %                  names are printed
+  %   \citeauthor{}  Prints only the name of the authors(s)
+  %   \citeyear{}    Prints only the year of the publication.
+
+% Main parts of the thesis
+\begin{document}
+
+  % Page de garde -> avant tout le reste
+    \newgeometry{centering} % pour que la page de garde soit centree
+    \input{chapters/000-garde}
+    \thispagestyle{empty} % no header in the page after cover page = blank page
+    \restoregeometry %  pour que les pages suivantes ne soient plus centrees
+    % (dans la documentclass book, les marges des pages gauche et droite ne sont
+    % pas les meme, elles sont inversees, avec une plus grande marge sur le cote
+    % exterieur de la page).
+
+  % Table of Contents (written as "Contents")
+    % Evite que le header dans le TOC ait "CHAPTER 0" ou "CONTENTS" (qui est le
+    % default behavior)
+    \fancyhead[LE]{\textbf{\thepage}}
+    \fancyhead[RE]{\textit{Contents}}
+    \fancyhead[LO]{\textit{Contents}}
+    \fancyhead[RO]{\textbf{\thepage}}
+    \setcounter{tocdepth}{1} % does not add subsection into table of contents
+    \tableofcontents
+
+  % Introduction
+    % No chapter number for Intro, so need to place it manually in Table of
+    % Content with \addcontentsline
+    \chapter*{Introduction}
+    \addcontentsline{toc}{chapter}{Introduction}
+    \input{chapters/00-introduction}
+
+  % PART 1 = preliminaries + machine learning for WE
+    \part{Background}
+      \chapter{Preliminaries on Word Representations}
+      \label{chap:preliminaries}
+      \input{chapters/01-preliminaries}
+      \chapter{Machine Learning for Word Embeddings}
+      \label{chap:ml-for-we}
+      \input{chapters/02-machine-learning}
+
+  % PART 2 = SOTA methodes pour apprendre word vectors + SOTA size reduction
+    \part{Learning \textit{``Good''} Word Representations}
+      \chapter{Encoding Linguistic Information into Word Embeddings}
+      \label{chap:methods-we}
+      \input{chapters/03-word-embeddings}
+      \chapter{Reducing the Size of Representations}
+      \label{chap:methods-reduction}
+      \input{chapters/04-reduce-size}
+
+  % PART 3 = dict2vec + binarization of word embddings
+    \part[Improved Methods to Learn Word Embeddings] % no \\ in TOC entry
+         {Improved Methods to \\Learn Word Embeddings}
+      \chapter{Learning Word Embeddings using Lexical Dictionaries}
+      \label{chap:dict2vec}
+      \input{chapters/05-dict2vec}
+      \chapter{Binarization of Word Embeddings}
+      \label{chap:nlb}
+      \input{chapters/06-near-lossless}
+
+  % Conclusion and Perspectives
+    % No chapter number for Conclusion, so need to place it manually in Table of
+    % Content with \addcontentsline
+    \bookmarksetup{startatroot}   % so it is not INSIDE part III
+    \addtocontents{toc}{\bigskip} % empty space after PART III in TOC
+    \setcounter{footnote}{0} % so footnote start at 1 (not reset with chapter*)
+    \chapter*{Conclusion and Perspectives}
+    \addcontentsline{toc}{chapter}{Conclusion and Perspectives}
+    \input{chapters/07-conclusion}
+
+  % List of publications
+    \chapter*{List of Publications}
+    \addcontentsline{toc}{chapter}{List of Publications}
+    \input{chapters/08-publications}
+
+  % List of released softwares
+    \chapter*{List of Released Softwares}
+    \addcontentsline{toc}{chapter}{List of Released Softwares}
+    \label{chap:software}
+    \input{chapters/09-softwares}
+
+  % List of figures
+    \listoffigures
+    \addcontentsline{toc}{chapter}{List of Figures}
+    \fancyhead[RE]{\textit{List of Figures}}
+    \fancyhead[LO]{\textit{List of Figures}}
+
+  % List of tables
+    \listoftables
+    \addcontentsline{toc}{chapter}{List of Tables}
+    \fancyhead[RE]{\textit{List of Tables}}
+    \fancyhead[LO]{\textit{List of Tables}}
+
+  % Bibliography
+    % Name of the .bib file (bibliography.bib) + style chosen to have full name
+    % of authors (no abbreviation) in refs
+    \cleardoublepage
+    \fancyhead[RE]{\textit{Bibliography}}
+    \fancyhead[LO]{\textit{Bibliography}}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \bibliography{bibliography}
+    \bibliographystyle{plainnat}
+
+\end{document}
