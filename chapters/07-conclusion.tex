@@ -1,0 +1,216 @@
+\fancyhead[LE]{\textbf{\thepage}}
+\fancyhead[RE]{\textit{Conclusion and Perspectives}}
+\fancyhead[LO]{\textit{Conclusion and Perspectives}}
+\fancyhead[RO]{\textbf{\thepage}}
+
+In this thesis, we have considered to address an important problem to
+automatically solve linguistic tasks, like translating a whole document without
+the need of a human translator or processing a large number of online comments
+to find relevant information. Most of the algorithms used to solve those tasks
+are based on numerical representations of the language, and more specifically on
+representations of words. These word representations should encode the
+linguistic properties of words, as the algorithms need to have information about
+the language to perform well in aforementioned tasks. This thesis focuses on
+learning these representations and solves the problem of improving them along
+two complementary axes. The first axis is to improve the quality and amount of
+linguistic information encoded into word representations so that the algorithms
+using them have access to a greater knowledge of the language to solve NLP
+tasks. The second axis is to improve the word representations to be more
+computationally efficient, \textit{i.e.} requiring less computing resources such
+as memory and computing power so that the word representations can be used on
+low-resource devices and not only on large computing servers as it is commonly
+the case.
+
+% need to be SUBSUBsection otherwise there is a section number at beginning of
+% line (and possiibly also in the ToC)
+\subsubsection{Summary of contributions}
+  To learn word representations (or word embeddings) which encode linguistic
+  properties, most common methods rely on the distributional hypothesis that
+  words appearing frequently together have the same meaning. Those methods use
+  the cooccurrence information of words to assess the similarity of words and
+  they learn word representations which reflect these similarities between
+  words. However, they use generic text corpora to count the cooccurrences,
+  which causes word representations to lack specific semantic information that
+  are not present in those corpora. The first contribution of this thesis
+  addresses the problem of incorporating more semantic information into word
+  embeddings. The proposed model, named \texttt{dict2vec}
+  \citep{tissier2017dict2vec}, leverages the linguistic information one can find
+  in lexical dictionaries to improve the semantic knowledge encoded into word
+  embeddings. It builds pairs of related words based on their cooccurrences in
+  dictionary definitions, which are then used in addition to the cooccurrence
+  information of a generic corpus to learn word embeddings. The vectors learned
+  by \texttt{dict2vec} provide significant improvements in word semantic
+  similarity tasks compared to other common methods used for learning word
+  embeddings. This contribution also shows that the additional linguistic
+  information found in dictionaries is richer than the one found in other
+  lexical resources.\medskip
+
+  As training corpora get bigger over time, the size of the vocabulary needed to
+  solve linguistic tasks also increases and so is the number of word embeddings
+  to learn. Many methods, including \texttt{dict2vec}, require several gigabytes
+  of memory to store word embeddings. Moreover, word embeddings are encoded as
+  real-valued vectors, which are not suitable for low-resource devices because
+  they have small computing power for floating-point operations, in addition to
+  a limited memory capacity. Therefore, using word embeddings on such devices is
+  not feasible in practice. The second contribution of this thesis addresses the
+  problem of reducing the memory size of word embeddings as well as making
+  vector operations on word embeddings faster. The proposed method
+  \textit{binarizes} word embeddings \textit{i.e.} it transforms pre-trained
+  real-valued vectors, like the \texttt{dict2vec} vectors, into binary vectors.
+  The method, named \texttt{NLB} \citep{tissier2019near}, uses an autoencoder
+  architecture where the latent representation is binary. The contribution
+  proposes an original scheme to update the parameters of this autoencoder
+  although its objective function is non-differentiable. The \texttt{NLB} model
+  can transform real-valued vectors to binary vectors of any size but in
+  practice, sizes of 64, 128 or 256 bits are the most suited ones because they
+  allow binary word embeddings to be aligned with CPU registers and benefit from
+  the fast optimized binary operations of processors. Binary word vectors of 256
+  bits learned by the \texttt{NLB} model are $97\%$ smaller than their
+  respective pre-trained real-valued vectors while their performances on tasks
+  like word semantic similarity or document classification only decrease by
+  $2\%$ on average. Moreover, this contribution shows that performing a top-K
+  query with the produced binary vectors is 30 times faster than with real-valed
+  vectors. \medskip
+
+  Both contributions of this thesis deal with a specific (but complementary)
+  problem of word embeddings. \texttt{dict2vec} is a novel method to extract
+  semantic knowledge from lexical dictionaries in an unsupervised way and then
+  incoporate this information into word embeddings to produce
+  semantically-richer word vectors. \texttt{NLB} is a new architecture used to
+  reduce the size of word embeddings by transforming them into binary vectors,
+  which also has the benefit of making vector operations faster. With
+  memory-reduced word embeddings, one can run models on low-resource devices
+  which is of growing interest with the democratization of NLP applications on
+  smartphones. Furthermore, all the source code to replicate the contributions
+  as well as the pre-trained \texttt{dict2vec} vectors have been made publicly
+  available\footnote{A complete description of the released source code is in
+  the chapter~\textit{\nameref{chap:software}}.}, to foster their use by the
+  community for other future models.
+
+% need to be SUBSUBsection otherwise there is a section number at beginning of
+% line (and possiibly also in the ToC)
+\subsubsection{Perspectives and ideas for future works}
+  Since both contributions are quite different in their approaches because they
+  focus on different angles to improve word embeddings, their perspectives are
+  also distinct. Several ideas to enhance proposed models have been presented in
+  their respective chapters (\autoref{chap:dict2vec} for \texttt{dict2vec},
+  \autoref{chap:nlb} for \texttt{NLB}), but this section aims to present more
+  general concepts and directions of improvement. \medskip
+
+  As detailed in~\autoref{chap:dict2vec} and reminded in the summary of
+  contributions, \texttt{dict2vec} uses dictionaries to extract semantic
+  knowledge. However, \texttt{dict2vec} does not consider the possible polysemy
+  of words (when a word has multiple meanings which depend on the context in
+  which it is used). Therefore, \texttt{dict2vec} considers the different sense
+  definitions of polysemous words as a single entity, not separately. This
+  results in learning a single embedding for each word, even for polysemous
+  words whereas it would be more appropriate to learn one embedding for each
+  sense in the case of polysemous words. New word embeddings learning methods
+  released after \texttt{dict2vec} (\citeyear{tissier2017dict2vec}) like
+  \texttt{ELMO}~\citep{peters2018elmo} or \texttt{BERT}~\citep{devlin2019bert}
+  model the idea that different meanings should have different word
+  representations. One direction to improve \texttt{dict2vec} is to consider
+  separately the definitions of different meanings when learning word embeddings
+  or when using them as additional source of information in downstream NLP
+  tasks. During this thesis, I had the opportunity to be a visiting scientist at
+  the \textit{Sapienza University of Roma} in Italy for a stay of two months and
+  start to work on this idea with Pr. Roberto Navigli, specialist in word sense
+  disambiguation (two ERC grants on this topic of research). The first results
+  of the polysemic improved version of \texttt{dict2vec} were not as good as for
+  the methods which consider polysemy information from other sources of
+  knowledge in their learning architecture. The main reason is that other
+  methods learn one vector per sense according to a standard index of senses
+  (word senses from WordNet) but the senses in dictionaries are not always
+  aligned with this index (\textit{i.e.} the first sense of a polysemous word in
+  WordNet is not always the same as its first sense in the dictionary). Since
+  the polysemous evaluation tasks expect to have sense vectors labeled with the
+  sense index of WordNet, an alignment step is required between the definitions
+  of WordNet and those of dictionaries. This alignment process is difficult
+  because the different senses of words have small definitions in WordNet. For
+  this reason, this direction of improvement remains a work in progress.
+  \medskip
+
+  Another way to improve \texttt{dict2vec} is to extend it to other languages.
+  Indeed, \texttt{dict2vec} only learns embeddings for English words, and
+  therefore only uses English dictionaries. Since dictionaries exist in all
+  common languages, \texttt{dict2vec} can easily be ported to improve the
+  semantic knowledge of word embeddings in different languages. Translation
+  dictionaries can also be a possible source of semantic knowledge to learn
+  aligned word embeddings of two languages, mainly to use them thereafter in
+  downstream translation models. \bigskip
+
+
+  Concerning the binarization of representations, an interesting perspective for
+  future work is to see how to apply the \texttt{NLB} method to other kinds of
+  representations like sentence embeddings or document embeddings in order to
+  use them in different types of NLP applications. For example, below is a table
+  indicating the number of articles among the respective version of Wikipedia of
+  the ten languages with the most articles\footnote{These numbers come from
+  \url{https://stats.wikimedia.org/}.}:
+
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+      \toprule[0.15em]
+          &    & Language      &  Number of articles\\
+      \midrule
+        1 & EN & English       &          6,024,168 \\
+        2 & DE & German        &          2,403,129 \\
+        3 & FR & French        &          2,184,995 \\
+        4 & RU & Russian       &          1,601,114 \\
+        5 & IT & Italian       &          1,586,063 \\
+        6 & ES & Spanish       &          1,579,838 \\
+        7 & JA & Japanese      &          1,192,418 \\
+        8 & ZH & Chinese       &          1,099,305 \\
+        9 & PT & Portuguese    &          1,022,673 \\
+        10& FA & Persian/Farsi &            712,160 \\
+      \bottomrule[0.15em]
+    \end{tabular}
+    \captionsetup[table]{list=no}
+    \caption*{Number of different articles in ten language specific versions of
+    Wikipedia (February 2020).}
+  \end{table}
+
+  \noindent The number of articles in the different language versions of
+  Wikipedia is in the order of millions (about the same number, if not more,
+  than the number of vectors in common word embedding matrices). Learning and
+  storing the real-valued vector representation of each article (\textit{e.g.}
+  for tasks like finding the closest article given a query word) is expensive.
+  Learning a \textit{binary representation} for each article would allow one to
+  perform queries faster. The binarization process can also be applied to each
+  individual sentence of each article, which would speed up the retrieval of a
+  specific piece of information to answer a query like a question. During this
+  thesis, I also had the opportunity to be a visiting scientist at the
+  \textit{RIKEN Center for Advanced Intelligence Project} in Japan for another
+  stay of five months to work on the task of classifying each article among a
+  hierarchical tree of 200 classes for the thirty language versions of Wikipedia
+  with the highest number of articles. Several problems occurred during the
+  development of a model to solve this task. First, the distribution of classes
+  is unbalanced. In Wikipedia, $30\%$ of all articles are about a person whereas
+  some other classes represent less than $0.001\%$ of all articles. The binary
+  representations learned by the model were not able to differentiate the
+  different classes as the representations of articles of less frequent classes
+  were too similar to the representations of articles of persons, and therefore
+  misclassified by the model. Second, some articles are very long and contain
+  many information (\textit{e.g.} the Wikipedia article of ``France'' talks
+  about its economy, its history, its landscapes, etc.). To learn a binary
+  representation for this article which can be used to correctly classify it as
+  a ``Country'', only the relevant information must be encoded into the binary
+  vector, the rest of the information has to be discarded so the model will not
+  classify it as a ``Person'' (because the page contain many names of former
+  presidents and kings) or as a ``Mountain'' (because the page also countains
+  many names of french mountains). For these reasons, this classification task
+  is difficult and is still a work in progress.
+
+  \medskip
+  \texttt{NLB} and other methods like hashing or quantization only focus on
+  transforming data representations. However, internal representations of
+  machine learning models like the different layers in a neural network are not
+  very different. Another interesting perspective of binarization, which is also
+  valid for other methods like quantization, is to transform the internal
+  representations of models. The benefits of size reduction and faster
+  computations would therefore also be applicable to entire models, which is of
+  major interest for replicability on low-resource devices given the exponential
+  growth of the number of parameters in the most recent NLP models like
+  \texttt{BERT}~\citep{devlin2019bert} or
+  \texttt{RoBERTa}~\citep{liu2019roberta}.
