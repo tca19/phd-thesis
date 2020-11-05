@@ -1,1 +1,16 @@
-# PhD Thesis
+                Improving methods to learn word representations
+                ===============================================
+                for efficient semantic similarities computations
+                ================================================
+
+ABOUT
+	This repository contains the PhD thesis of Julien Tissier, entitled,
+
+	"Improving methods to learn word representations for efficient
+	semantic similarities computations"
+
+	It also contains all the source materials used to produce the thesis,
+	including the Latex .tex source files, the images and their respective
+	source files to generate or modify them (either the Libreoffice Draw
+	source or the Python code) and the slides of the PhD defense.
+
