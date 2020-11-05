@@ -29,4 +29,12 @@ CONTENT
 	  - images-src/: this folder contains the source files of some
 	    illustrations images used in the thesis, as Libreoffice Draw files
 	    (.odg).
+	  - PhD-Defense-Julien-Tissier.pdf: the defense presentation as PDF, 48
+	    slides.
+	  - PhD-Thesis-Julien-Tissier.pdf: the thesis as PDF, 127 pages.
+	  - makefile: used to generate the thesis from source files. Use the
+	    command `make` at the root of this repository to produce it. You
+	    will need the following tools: make, pdflatex and bibtex.
+	  - phd-thesis.tex: the main .tex file, containing all the Latex package
+	    to use and the different chapters to include.
 
