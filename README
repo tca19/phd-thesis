@@ -14,3 +14,19 @@ ABOUT
 	source files to generate or modify them (either the Libreoffice Draw
 	source or the Python code) and the slides of the PhD defense.
 
+CONTENT
+	This repository is composed of:
+	  - chapters/: this folder contains all the chapters of the thesis, as
+	    ".tex" source files. There are 10 chapters (from 00-introduction.tex
+	    to 09-software.tex), a cover page (000-garde.tex) and the
+	    bibliography (99-bibliography.bib).
+	  - images/: this folder contains all the images used in the thesis
+	    (i.e. with the \includegraphics{} command in the .tex files) either
+	    as PNG or PDF.
+	  - images-code/: this folder contains the Python code used to generate
+	    some plots or illustration images of the thesis with the Matplotlib
+	    library.
+	  - images-src/: this folder contains the source files of some
+	    illustrations images used in the thesis, as Libreoffice Draw files
+	    (.odg).
+
