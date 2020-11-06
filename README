@@ -66,3 +66,6 @@ SUMMARY
 	transform commonly used real-valued embeddings into  binary  embeddings,
 	reducing their size in memory by 97% with only a loss of ∼2% in accuracy
 	in downstream NLP tasks. 
+
+AUTHOR
+	Written by Julien Tissier <30314448+tca19@users.noreply.github.com>.
