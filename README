@@ -4,65 +4,65 @@
                 ================================================
 
 ABOUT
-	This repository contains the PhD thesis of Julien Tissier, entitled,
+	This repository contains the PhD thesis  of  Julien  Tissier,  entitled,
 
 	"Improving methods to learn word representations for efficient
 	semantic similarities computations"
 
-	It also contains all the source materials used to produce the thesis,
-	including the Latex .tex source files, the images and their respective
-	source files to generate or modify them (either the Libreoffice Draw
-	source or the Python code) and the slides of the PhD defense.
+	It also contains all the source materials used to  produce  the  thesis,
+	including the Latex .tex source files, the images and  their  respective
+	source files to generate or modify them  (either  the  Libreoffice  Draw
+	source  or  the  Python  code)  and  the  slides  of  the  PhD  defense.
 
 CONTENT
 	This repository is composed of:
-	  - chapters/: this folder contains all the chapters of the thesis, as
-	    ".tex" source files. There are 10 chapters (from 00-introduction.tex
-	    to 09-software.tex), a cover page (000-garde.tex) and the
-	    bibliography (99-bibliography.bib).
-	  - images/: this folder contains all the images used in the thesis
-	    (i.e. with the \includegraphics{} command in the .tex files) either
-	    as PNG or PDF.
-	  - images-code/: this folder contains the Python code used to generate
-	    some plots or illustration images of the thesis with the Matplotlib
-	    library.
-	  - images-src/: this folder contains the source files of some
-	    illustrations images used in the thesis, as Libreoffice Draw files
-	    (.odg).
-	  - PhD-Defense-Julien-Tissier.pdf: the defense presentation as PDF, 48
-	    slides.
+	  - chapters/: this folder contains all the chapters of the  thesis,  as
+            ".tex" source files. There are 10 chapters (from 00-introduction.tex
+	    to  09-software.tex),  a  cover   page   (000-garde.tex)   and   the
+            bibliography (99-bibliography.bib).
+	  - images/: this folder contains all the  images  used  in  the  thesis
+	    (i.e.  with the \includegraphics{} command in the .tex files) either
+            as PNG or PDF.
+	  - images-code/: this folder contains the Python code used to  generate
+	    some plots or illustration images of the thesis with the  Matplotlib
+            library.
+	  -  images-src/:  this  folder  contains  the	source	files  of   some
+	    illustrations images used in the thesis, as Libreoffice  Draw  files
+            (.odg).
+	  - PhD-Defense-Julien-Tissier.pdf: the defense presentation as PDF,  48
+            slides.
 	  - PhD-Thesis-Julien-Tissier.pdf: the thesis as PDF, 127 pages.
-	  - makefile: used to generate the thesis from source files. Use the
-	    command `make` at the root of this repository to produce it. You
-	    will need the following tools: make, pdflatex and bibtex.
+	  - makefile: used to generate the thesis from source  files.	Use  the
+	    command `make` at the root of this repository to  produce  it.   You
+	    will  need	the  following	tools:	make,	pdflatex   and	 bibtex.
 	  - phd-thesis.tex: the main .tex file, containing all the Latex package
-	    to use and the different chapters to include.
+            to use and the different chapters to include.
 
 SUMMARY
-	Many natural language processing applications rely on word embeddings
-	(also called word representations) to achieve state-of-the-art results.
-	These numerical representations of the language should encode both
-	syntactic and semantic information to perform well in downstream tasks.
-	However, common models (word2vec, GloVe) use generic corpus like
-	Wikipedia to learn them and they therefore lack specific semantic
-	information. Moreover it requires a large memory space to store them
-	because the number of representations to save can be in the order of a
-	million.
+	Many natural language processing applications rely  on	word  embeddings
+	(also called word representations) to achieve state-of-the-art  results.
+	These numerical representations  of  the  language  should  encode  both
+	syntactic and semantic information to perform well in downstream  tasks.
+	However,  common  models  (word2vec,  GloVe)  use  generic  corpus  like
+	Wikipedia to learn  them  and  they  therefore lack  specific   semantic
+	information.  Moreover it requires a large memory space  to  store  them
+	because the number of representations to save can be in the order  of  a
+        million.
 
-	The topic of my thesis is to develop new learning algorithms to both
-	improve the semantic information encided within the representations
-	while making the requiring less memory space for storage and their
+	The topic of my thesis is to develop new  learning  algorithms  to  both
+	improve the semantic  information  encided  within  the  representations
+	while making the requiring less  memory  space  for  storage  and  their
 	applications in NLP tasks.
 
-	The first part of my work is to improve the semantic information
-	contained in word embeddings. I developed dict2vec, a model that uses
-	additional information from online lexical dictionaries when learning
-	word representations. The dict2vec word embeddings perform ∼15% better
-	against the embeddings learned by other models on word semantic
+	The first part of  my  work  is  to  improve  the  semantic  information
+	contained in word embeddings.  I developed dict2vec, a model  that  uses
+	additional information from online lexical  dictionaries  when  learning
+	word representations.  The dict2vec word embeddings perform ∼15%  better
+	against  the  embeddings  learned  by  other  models  on  word  semantic
 	similarity tasks.
 
-	The second part of my work is to reduce the memory size of the
-	embeddings. I developed an architecture based on an autoencoder to
-	transform commonly used real-valued embeddings into binary embeddings,
-	reducing their size in memory by 97% with only a loss of ∼2% in
-	accuracy in downstream NLP tasks. 
+	The second part of  my	work  is  to  reduce  the  memory  size  of  the
+	embeddings.  I developed an architecture  based  on  an  autoencoder  to
+	transform commonly used real-valued embeddings into  binary  embeddings,
+	reducing their size in memory by 97% with only a loss of ∼2% in accuracy
+        in downstream NLP tasks. 
