@@ -38,3 +38,31 @@ CONTENT
 	  - phd-thesis.tex: the main .tex file, containing all the Latex package
 	    to use and the different chapters to include.
 
+SUMMARY
+	Many natural language processing applications rely on word embeddings
+	(also called word representations) to achieve state-of-the-art results.
+	These numerical representations of the language should encode both
+	syntactic and semantic information to perform well in downstream tasks.
+	However, common models (word2vec, GloVe) use generic corpus like
+	Wikipedia to learn them and they therefore lack specific semantic
+	information. Moreover it requires a large memory space to store them
+	because the number of representations to save can be in the order of a
+	million.
+
+	The topic of my thesis is to develop new learning algorithms to both
+	improve the semantic information encided within the representations
+	while making the requiring less memory space for storage and their
+	applications in NLP tasks.
+
+	The first part of my work is to improve the semantic information
+	contained in word embeddings. I developed dict2vec, a model that uses
+	additional information from online lexical dictionaries when learning
+	word representations. The dict2vec word embeddings perform ∼15% better
+	against the embeddings learned by other models on word semantic
+	similarity tasks.
+
+	The second part of my work is to reduce the memory size of the
+	embeddings. I developed an architecture based on an autoencoder to
+	transform commonly used real-valued embeddings into binary embeddings,
+	reducing their size in memory by 97% with only a loss of ∼2% in
+	accuracy in downstream NLP tasks. 
