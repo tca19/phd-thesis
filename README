@@ -6,7 +6,7 @@
 ABOUT
 	This repository contains the PhD thesis  of  Julien  Tissier,  entitled,
 
-	"Improving methods to learn word representations for efficient
+	"Improving  methods  to  learn  word   representations   for   efficient
 	semantic similarities computations"
 
 	It also contains all the source materials used to  produce  the  thesis,
@@ -17,26 +17,26 @@ ABOUT
 CONTENT
 	This repository is composed of:
 	  - chapters/: this folder contains all the chapters of the  thesis,  as
-            ".tex" source files. There are 10 chapters (from 00-introduction.tex
+	    ".tex" source files. There are 10 chapters (from 00-introduction.tex
 	    to  09-software.tex),  a  cover   page   (000-garde.tex)   and   the
-            bibliography (99-bibliography.bib).
+	    bibliography (99-bibliography.bib).
 	  - images/: this folder contains all the  images  used  in  the  thesis
 	    (i.e.  with the \includegraphics{} command in the .tex files) either
-            as PNG or PDF.
+	    as PNG or PDF.
 	  - images-code/: this folder contains the Python code used to  generate
 	    some plots or illustration images of the thesis with the  Matplotlib
-            library.
+	    library.
 	  - images-src/:  this   folder  contains  the  source  files  of   some
 	    illustrations images used in the thesis, as Libreoffice  Draw  files
-            (.odg).
+	    (.odg).
 	  - PhD-Defense-Julien-Tissier.pdf: the defense presentation as PDF,  48
-            slides.
+	    slides.
 	  - PhD-Thesis-Julien-Tissier.pdf: the thesis as PDF, 127 pages.
 	  - makefile: used to generate the thesis from source  files.   Use  the
 	    command `make` at the root of this repository to  produce  it.   You
 	    will  need  the  following  tools:  make,   pdflatex   and   bibtex.
 	  - phd-thesis.tex: the main .tex file, containing all the Latex package
-            to use and the different chapters to include.
+	    to use and the different chapters to include.
 
 SUMMARY
 	Many natural language processing applications rely  on  word  embeddings
@@ -50,8 +50,8 @@ SUMMARY
 	million.
 
 	The topic of my thesis is to develop new  learning  algorithms  to  both
-	improve the semantic  information  encided  within  the  representations
-	while making the requiring less  memory  space  for  storage  and  their
+	improve the semantic  information  encoded  within  the  representations
+	while making them requiring less  memory space  for  storage  and  their
 	applications in NLP tasks.
 
 	The first part of  my  work  is  to  improve  the  semantic  information
@@ -68,12 +68,12 @@ SUMMARY
 	in downstream NLP tasks. 
 
 AUTHOR
-	Written by Julien Tissier <30314448+tca19@users.noreply.github.com>.
+	Written  by  Julien  Tissier  <30314448+tca19@users.noreply.github.com>.
 
 COPYRIGHT
 	This thesis and all the files in this repository are licensed under  the
 	"Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-	Public License". By using or downloading this repository,  you agree to:
+	Public License".  By using or downloading this repository, you agree to:
 	  1. NonCommercial - You may not use the material for commercial
 	     purposes.
 	  2. Attribution - You must give appropriate credit, provide a link to
